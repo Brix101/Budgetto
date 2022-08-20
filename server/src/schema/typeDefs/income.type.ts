@@ -2,7 +2,7 @@ import { gql } from "apollo-server-core";
 
 export default gql`
   type Query {
-    income: [Income]
+    getAllIncome: [Income]
   }
 
   type Income {

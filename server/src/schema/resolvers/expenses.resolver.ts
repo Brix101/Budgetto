@@ -2,7 +2,7 @@ import { Expenses } from "../../entity/expenses.entity";
 
 export default {
   Query: {
-    expenses: async () => {
+    getAllExpenses: async () => {
       return await Expenses.find();
     },
   },

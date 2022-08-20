@@ -2,14 +2,12 @@ import { gql } from "apollo-server-core";
 
 export default gql`
   type Query {
-    getAllExpenses: [Expenses]
+    getAllFrequency: [Frequency]
   }
 
-  type Expenses {
+  type Frequency {
     id: ID
     name: String
-    amount: Float
-    category: String
-    note: String
+    description: String
   }
 `;
