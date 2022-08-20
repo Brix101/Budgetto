@@ -8,7 +8,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { PeriodicalType } from "./periodicalType.entity";
+import { Frequency } from "./frequency";
 
 export enum Category {
   ESSENTIAL = "essential",
@@ -38,11 +38,11 @@ export class Expenses extends BaseEntity {
   @Column("text")
   note?: string;
 
-  @ManyToMany(() => PeriodicalType, {
+  @ManyToMany(() => Frequency, {
     cascade: true,
   })
   @JoinTable()
-  periodicalType?: PeriodicalType[];
+  frequency?: Frequency[];
 
   @CreateDateColumn()
   createdAt!: Date;

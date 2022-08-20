@@ -8,7 +8,7 @@ import {
 } from "typeorm";
 
 @Entity()
-export class PeriodicalType extends BaseEntity {
+export class Frequency extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
 
