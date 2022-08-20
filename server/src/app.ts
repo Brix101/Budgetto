@@ -2,7 +2,8 @@ import {
   ApolloServerPluginDrainHttpServer,
   ApolloServerPluginLandingPageLocalDefault,
 } from "apollo-server-core";
-import { ApolloServer, gql } from "apollo-server-express";
+import { ApolloServer } from "apollo-server-express";
+import config from "config";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import express, { Request, Response } from "express";
@@ -16,6 +17,13 @@ const main = async () => {
   app.use(cors());
   app.use(express.json());
   app.use(cookieParser());
+  app.use(
+    cors({
+      origin: config.get("corsOrigin"),
+    })
+  );
+
+  const port = config.get("port") as number;
 
   const server = new ApolloServer({
     typeDefs: TypeDefs,
@@ -32,7 +40,7 @@ const main = async () => {
   await server.start();
   server.applyMiddleware({ app });
   await new Promise<void>((resolve) =>
-    httpServer.listen({ port: 4000 }, resolve)
+    httpServer.listen({ port: port }, resolve)
   );
   console.log(
     `☁️🚀☁️ Server lunch at http://localhost:4000${server.graphqlPath}`
