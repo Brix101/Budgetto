@@ -3,9 +3,12 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinTable,
+  ManyToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
+import { PeriodicalType } from "./periodicalType.entity";
 
 export enum Category {
   ESSENTIAL = "essential",
@@ -34,6 +37,12 @@ export class Expenses extends BaseEntity {
 
   @Column("text")
   note?: string;
+
+  @ManyToMany(() => PeriodicalType, {
+    cascade: true,
+  })
+  @JoinTable()
+  periodicalType?: PeriodicalType[];
 
   @CreateDateColumn()
   createdAt!: Date;

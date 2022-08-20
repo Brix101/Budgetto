@@ -7,7 +7,7 @@ export const AppDataSource = new DataSource({
   username: "root",
   password: "root",
   database: "budgetto",
-  synchronize: true,
+  synchronize: false,
   logging: true,
   entities: ["*/entity/*.ts"],
   migrations: [],
