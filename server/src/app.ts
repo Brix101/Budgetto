@@ -7,21 +7,15 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import express, { Request, Response } from "express";
 import http from "http";
-import { DataSource } from "typeorm";
+import { AppDataSource } from "./data-source";
 import { Resolvers, TypeDefs } from "./schema";
 
 const main = async () => {
-  new DataSource({
-    type: "mysql",
-    host: "localhost",
-    port: 5432,
-    username: "root",
-    password: "root",
-    database: "budgetto",
-    entities: [],
-    synchronize: true,
-    logging: true,
-  });
+  await AppDataSource.initialize()
+    .then(() => {
+      console.log(`☁☁☁ Connected to Database`);
+    })
+    .catch((error) => console.log(error));
 
   const app = express();
   const httpServer = http.createServer(app);
