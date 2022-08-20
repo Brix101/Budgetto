@@ -1,4 +1,4 @@
-import book from "./book";
-import number from "./number";
+import expensesType from "./expenses.type";
+import incomeType from "./income.type";
 
-export default [book, number];
+export default [expensesType, incomeType];
