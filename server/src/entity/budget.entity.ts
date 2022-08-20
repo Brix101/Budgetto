@@ -8,7 +8,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { Frequency } from "./frequency";
+import { Frequency } from "./frequency.entity";
 
 @Entity()
 export class Budget extends BaseEntity {
