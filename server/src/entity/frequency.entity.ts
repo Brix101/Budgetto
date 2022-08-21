@@ -1,4 +1,4 @@
-import { MaxLength, MinLength } from "class-validator";
+import { MaxLength } from "class-validator";
 import { Field, InputType, Int, ObjectType } from "type-graphql";
 import {
   BaseEntity,
@@ -22,8 +22,8 @@ export class Frequency extends BaseEntity {
   })
   name!: string;
 
-  @Field()
-  @Column("text")
+  @Field({ nullable: true })
+  @Column("text", { nullable: true })
   description?: string;
 
   @CreateDateColumn({ name: "created_at" })
@@ -38,17 +38,9 @@ export class CreateFrequencyInput {
   @Field()
   name!: string;
 
-  // @MinLength(50, {
-  //   message: "Description must be at least 50 characters",
-  // })
   @MaxLength(1000, {
     message: "Description must not be more than 1000 characters",
   })
-  @Field()
+  @Field({ nullable: true })
   description?: string;
-
-  // @IsNumber()
-  // @Min(1)
-  // @Field()
-  // price: number;
 }
