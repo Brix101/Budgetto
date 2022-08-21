@@ -8,7 +8,8 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import express, { Request, Response } from "express";
 import http from "http";
-import { Resolvers, TypeDefs } from "./schema";
+import { buildSchema } from "type-graphql";
+import resolvers from "./resolvers";
 import dataSource from "./utils/data-source";
 
 const main = async () => {
@@ -25,9 +26,11 @@ const main = async () => {
 
   const port = config.get("port") as number;
 
+  const schema = await buildSchema({
+    resolvers,
+  });
   const server = new ApolloServer({
-    typeDefs: TypeDefs,
-    resolvers: Resolvers,
+    schema,
     csrfPrevention: true,
     cache: "bounded",
     plugins: [

@@ -1,3 +1,4 @@
+import { Field, Float, Int, ObjectType } from "type-graphql";
 import {
   BaseEntity,
   Column,
@@ -10,19 +11,24 @@ import {
 } from "typeorm";
 import { Frequency } from "./frequency.entity";
 
+@ObjectType()
 @Entity()
 export class Budget extends BaseEntity {
+  @Field(() => Int)
   @PrimaryGeneratedColumn()
   id!: number;
 
+  @Field()
   @Column({
     length: 100,
   })
   name!: string;
 
+  @Field(() => Float)
   @Column({ type: "decimal", precision: 10, scale: 2, default: 0 })
   amount!: number;
 
+  @Field()
   @Column("text")
   note?: string;
 
