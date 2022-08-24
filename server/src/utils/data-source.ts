@@ -1,14 +1,15 @@
+import config from "config";
 import { DataSource } from "typeorm";
 
 const AppDataSource = new DataSource({
   type: "mysql",
-  host: "localhost",
-  port: 3306,
-  username: "root",
-  password: "root",
-  database: "budgetto",
-  synchronize: true,
-  logging: true,
+  host: config.get("host"),
+  port: config.get("db_port"),
+  username: config.get("username"),
+  password: config.get("password"),
+  database: config.get("database"),
+  synchronize: config.get("synchronize"),
+  logging: config.get("logging"),
   entities: ["*/entity/*.ts"],
   migrations: [],
   subscribers: [],
