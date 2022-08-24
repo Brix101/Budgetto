@@ -4,12 +4,10 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  JoinTable,
-  ManyToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { Frequency } from "./frequency.entity";
+import { Category } from "./Category.enum";
 
 @ObjectType()
 @Entity()
@@ -29,14 +27,16 @@ export class Income extends BaseEntity {
   amount!: number;
 
   @Field()
+  @Column({
+    type: "enum",
+    enum: Category,
+    default: Category.MONTHLY,
+  })
+  category!: Category;
+
+  @Field()
   @Column("text")
   note?: string;
-
-  @ManyToMany(() => Frequency, {
-    cascade: true,
-  })
-  @JoinTable()
-  frequency?: Frequency[];
 
   @CreateDateColumn({ name: "created_at" })
   createdAt!: Date;

@@ -1,32 +1,15 @@
 import { MaxLength } from "class-validator";
-import {
-  Field,
-  Float,
-  InputType,
-  Int,
-  ObjectType,
-  registerEnumType,
-} from "type-graphql";
+import { Field, Float, InputType, Int, ObjectType } from "type-graphql";
+
 import {
   BaseEntity,
   Column,
   CreateDateColumn,
   Entity,
-  JoinTable,
-  ManyToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { Frequency } from "./frequency.entity";
-
-export enum Category {
-  ESSENTIAL = "essential",
-  NON_ESSENTIAL = "non essential",
-}
-
-registerEnumType(Category, {
-  name: "Category", // this one is mandatory
-});
+import { Category } from "./Category.enum";
 
 @ObjectType()
 @Entity()
@@ -49,20 +32,13 @@ export class Expenses extends BaseEntity {
   @Column({
     type: "enum",
     enum: Category,
-    default: Category.NON_ESSENTIAL,
+    default: Category.MONTHLY,
   })
   category!: Category;
 
   @Field({ nullable: true })
   @Column("text", { nullable: true })
   note?: string;
-
-  @Field(() => [Frequency], { nullable: true })
-  @ManyToMany(() => Frequency, {
-    cascade: true,
-  })
-  @JoinTable()
-  frequency?: Frequency;
 
   @CreateDateColumn()
   createdAt!: Date;
@@ -85,9 +61,6 @@ export class CreateExpenseInput {
   @Field({ nullable: true })
   note?: string;
 
-  @Field((type) => Category)
+  @Field(() => Category)
   category!: Category;
-
-  // @Field(() => [Frequency], { nullable: true })
-  // frequency?: Frequency;
 }

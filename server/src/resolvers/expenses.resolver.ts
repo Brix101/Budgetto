@@ -18,7 +18,6 @@ export class ExpensesResolver {
     expenses.amount = input.amount;
     expenses.category = input.category;
     expenses.note = input.note;
-    // expenses.frequency = input.frequency;
 
     return await expenses.save();
   }
