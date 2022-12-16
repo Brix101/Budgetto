@@ -1,7 +1,16 @@
-import { InputType, Int, Field } from '@nestjs/graphql';
+import { Field, InputType } from '@nestjs/graphql';
+import { IsString, MinLength } from 'class-validator';
+
 
 @InputType()
 export class CreateFrequencyInput {
-  @Field(() => Int, { description: 'Example field (placeholder)' })
-  exampleField: number;
+  
+  @IsString()
+  @MinLength(4)
+  @Field()
+  name: string;
+
+  @Field(()=>String, { nullable:true, description:"Frequency description" })
+  description?: string;
+
 }

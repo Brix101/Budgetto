@@ -1,8 +1,8 @@
+import { Field, InputType, PartialType } from '@nestjs/graphql';
 import { CreateFrequencyInput } from './create-frequency.input';
-import { InputType, Field, Int, PartialType } from '@nestjs/graphql';
 
 @InputType()
 export class UpdateFrequencyInput extends PartialType(CreateFrequencyInput) {
-  @Field(() => Int)
-  id: number;
+  @Field(() => String)
+  _id: string;
 }

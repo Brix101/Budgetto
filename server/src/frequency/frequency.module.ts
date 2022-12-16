@@ -5,7 +5,7 @@ import { FrequencyResolver } from './frequency.resolver';
 import { FrequencyService } from './frequency.service';
 
 @Module({
-  imports:[ MongooseModule.forFeature([{ name: Frequency.name, schema: FrequencySchema }])],
+  imports: [MongooseModule.forFeature([{ name: Frequency.name, schema: FrequencySchema }])],
   providers: [FrequencyResolver, FrequencyService]
 })
 export class FrequencyModule {}

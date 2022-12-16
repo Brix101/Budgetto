@@ -1,0 +1,202 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Auth {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Budget {
+  _id: String!
+
+  """Amount by centavo"""
+  amount: Float!
+
+  """Created At"""
+  createdAt: DateTime!
+
+  """Budget name"""
+  name: String!
+
+  """Budget note"""
+  note: String
+
+  """Updated At"""
+  updatedAt: DateTime!
+}
+
+enum Category {
+  ESSENTIAL
+  NON_ESSENTIAL
+}
+
+input CreateAuthInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input CreateBudgetInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input CreateExpenseInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input CreateFrequencyInput {
+  """Frequency description"""
+  description: String
+  name: String!
+}
+
+input CreateIncomeInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input CreateUserInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Expense {
+  _id: String!
+
+  """Amount by centavo"""
+  amount: Float!
+
+  """Expense category"""
+  category: Category!
+
+  """Created At"""
+  createdAt: DateTime!
+  frequency: [Frequency!]!
+
+  """Expense name"""
+  name: String!
+
+  """Expense note"""
+  note: String
+
+  """Updated At"""
+  updatedAt: DateTime!
+}
+
+type Frequency {
+  _id: String!
+
+  """Created At"""
+  createdAt: DateTime!
+
+  """Frequency description"""
+  description: String
+
+  """Frequency name"""
+  name: String!
+
+  """Updated At"""
+  updatedAt: DateTime!
+}
+
+type Income {
+  _id: String!
+
+  """Amount by centavo"""
+  amount: Float!
+
+  """Created At"""
+  createdAt: DateTime!
+  frequency: [Frequency!]!
+
+  """Income name"""
+  name: String!
+
+  """Income note"""
+  note: String
+
+  """Updated At"""
+  updatedAt: DateTime!
+}
+
+type Mutation {
+  createAuth(createAuthInput: CreateAuthInput!): Auth!
+  createBudget(createBudgetInput: CreateBudgetInput!): Budget!
+  createExpense(createExpenseInput: CreateExpenseInput!): Expense!
+  createFrequency(createFrequencyInput: CreateFrequencyInput!): Frequency!
+  createIncome(createIncomeInput: CreateIncomeInput!): Income!
+  createUser(createUserInput: CreateUserInput!): User!
+  removeAuth(id: Int!): Auth!
+  removeBudget(id: Int!): Budget!
+  removeExpense(id: Int!): Expense!
+  removeFrequency(_id: String!): Frequency!
+  removeIncome(id: Int!): Income!
+  removeUser(id: Int!): User!
+  updateAuth(updateAuthInput: UpdateAuthInput!): Auth!
+  updateBudget(updateBudgetInput: UpdateBudgetInput!): Budget!
+  updateExpense(updateExpenseInput: UpdateExpenseInput!): Expense!
+  updateFrequency(updateFrequencyInput: UpdateFrequencyInput!): Frequency!
+  updateIncome(updateIncomeInput: UpdateIncomeInput!): Income!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+}
+
+type Query {
+  auth(id: Int!): Auth!
+  budget(id: Int!): Budget!
+  expense(id: Int!): Expense!
+  expenses: [Expense!]!
+  frequencies: [Frequency!]!
+  frequency(_id: String!): Frequency!
+  income(id: Int!): Income!
+  user(id: Int!): User!
+}
+
+input UpdateAuthInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input UpdateBudgetInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input UpdateExpenseInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input UpdateFrequencyInput {
+  _id: String!
+
+  """Frequency description"""
+  description: String
+  name: String
+}
+
+input UpdateIncomeInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input UpdateUserInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+type User {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}

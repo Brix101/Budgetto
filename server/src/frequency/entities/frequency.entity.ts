@@ -3,7 +3,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Schema as MongooseSchema } from 'mongoose';
 
 
-export type CatDocument = HydratedDocument<Frequency>;
+export type FrequencyDocument = HydratedDocument<Frequency>;
 
 @Schema({timestamps:true})
 @ObjectType()
