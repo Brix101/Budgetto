@@ -23,9 +23,7 @@ export class User {
   @Prop({ required: true })
   password: string;
 
-  @Prop({ required: true })
-  confirmToken: string;
-
+  
   @Prop({ required: true, default: false })
   active: boolean;
 
@@ -44,21 +42,21 @@ export class User {
 export const UserSchema = SchemaFactory.createForClass(User);
 
 
-UserSchema.pre("save",async (next) => {
+UserSchema.pre("save",async function(done) {
   let user = this as UserDocument
 
-    if(!user.isModified("password")){
-      return next();
-    }
+    if(user.isModified("password")){
+      
       // Random additional data
-  const salt = await bcrypt.genSalt(10);
+    const salt = await bcrypt.genSalt(10);
 
-  const hash = bcrypt.hashSync(user.password, salt);
+    const hash = bcrypt.hashSync(user.password, salt);
 
-  // Replace the password with the hash
-  user.password = hash;
+    // Replace the password with the hash
+    user.set("password",hash)
+    }
 
-  return next();
+  return done();
 })
 
 UserSchema.methods.comparePassword = async function (

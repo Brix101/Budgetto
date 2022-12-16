@@ -59,8 +59,11 @@ input CreateIncomeInput {
 }
 
 input CreateUserInput {
+  email: String!
+
   """Example field (placeholder)"""
-  exampleField: Int!
+  name: String!
+  password: String!
 }
 
 """
@@ -193,9 +196,12 @@ input UpdateIncomeInput {
 }
 
 input UpdateUserInput {
-  """Example field (placeholder)"""
-  exampleField: Int
+  email: String
   id: Int!
+
+  """Example field (placeholder)"""
+  name: String
+  password: String
 }
 
 type User {
