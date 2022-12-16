@@ -120,12 +120,23 @@ type Income {
   updatedAt: DateTime!
 }
 
+type LoginResponse {
+  accessToken: String!
+  user: User!
+}
+
+input LoginUserInput {
+  email: String!
+  password: String!
+}
+
 type Mutation {
   createBudget(createBudgetInput: CreateBudgetInput!): Budget!
   createExpense(createExpenseInput: CreateExpenseInput!): Expense!
   createFrequency(createFrequencyInput: CreateFrequencyInput!): Frequency!
   createIncome(createIncomeInput: CreateIncomeInput!): Income!
   createUser(createUserInput: CreateUserInput!): User!
+  login(loginUserInput: LoginUserInput!): LoginResponse!
   removeBudget(id: String!): Budget!
   removeExpense(id: String!): Expense!
   removeFrequency(id: String!): Frequency!
