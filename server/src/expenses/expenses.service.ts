@@ -12,15 +12,15 @@ export class ExpensesService {
     return `This action returns all expenses`;
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return `This action returns a #${id} expense`;
   }
 
-  update(id: number, updateExpenseInput: UpdateExpenseInput) {
+  update(id: string, updateExpenseInput: UpdateExpenseInput) {
     return `This action updates a #${id} expense`;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} expense`;
   }
 }

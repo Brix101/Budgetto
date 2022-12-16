@@ -18,16 +18,16 @@ export class FrequencyService {
     return this.frequencyModel.find().exec()
   }
 
-  findOne(_id: string) {
-    return this.frequencyModel.findById(_id)
+  findOne(id: string) {
+    return this.frequencyModel.findById(id)
   }
 
-  update(_id: string, updateFrequencyInput: UpdateFrequencyInput) {
-    return this.frequencyModel.findByIdAndUpdate(_id,
+  update(id: string, updateFrequencyInput: UpdateFrequencyInput) {
+    return this.frequencyModel.findByIdAndUpdate(id,
       {$set:updateFrequencyInput},{new:true})
   }
 
-  remove(_id: string) {
-    return this.frequencyModel.findByIdAndRemove(_id)
+  remove(id: string) {
+    return this.frequencyModel.findByIdAndRemove(id)
   }
 }

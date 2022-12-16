@@ -12,15 +12,15 @@ export class BudgetService {
     return `This action returns all budget`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} budget`;
+  findOne(_id: string) {
+    return `This action returns a #${_id} budget`;
   }
 
-  update(id: number, updateBudgetInput: UpdateBudgetInput) {
-    return `This action updates a #${id} budget`;
+  update(_id: string, updateBudgetInput: UpdateBudgetInput) {
+    return `This action updates a #${_id} budget`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} budget`;
+  remove(_id: string) {
+    return `This action removes a #${_id} budget`;
   }
 }

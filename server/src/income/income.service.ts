@@ -12,15 +12,15 @@ export class IncomeService {
     return `This action returns all income`;
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return `This action returns a #${id} income`;
   }
 
-  update(id: number, updateIncomeInput: UpdateIncomeInput) {
+  update(id: string, updateIncomeInput: UpdateIncomeInput) {
     return `This action updates a #${id} income`;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} income`;
   }
 }

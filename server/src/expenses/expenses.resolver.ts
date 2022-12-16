@@ -1,8 +1,8 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
-import { ExpensesService } from './expenses.service';
-import { Expense } from './entities/expense.entity';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { CreateExpenseInput } from './dto/create-expense.input';
 import { UpdateExpenseInput } from './dto/update-expense.input';
+import { Expense } from './entities/expense.entity';
+import { ExpensesService } from './expenses.service';
 
 @Resolver(() => Expense)
 export class ExpensesResolver {
@@ -19,7 +19,7 @@ export class ExpensesResolver {
   }
 
   @Query(() => Expense, { name: 'expense' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  findOne(@Args('id', { type: () => String }) id: string) {
     return this.expensesService.findOne(id);
   }
 
@@ -29,7 +29,7 @@ export class ExpensesResolver {
   }
 
   @Mutation(() => Expense)
-  removeExpense(@Args('id', { type: () => Int }) id: number) {
+  removeExpense(@Args('id', { type: () => String }) id: string) {
     return this.expensesService.remove(id);
   }
 }

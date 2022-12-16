@@ -135,10 +135,10 @@ type Mutation {
   createIncome(createIncomeInput: CreateIncomeInput!): Income!
   createUser(createUserInput: CreateUserInput!): User!
   removeAuth(id: Int!): Auth!
-  removeBudget(id: Int!): Budget!
-  removeExpense(id: Int!): Expense!
-  removeFrequency(_id: String!): Frequency!
-  removeIncome(id: Int!): Income!
+  removeBudget(id: String!): Budget!
+  removeExpense(id: String!): Expense!
+  removeFrequency(id: String!): Frequency!
+  removeIncome(id: String!): Income!
   removeUser(id: Int!): User!
   updateAuth(updateAuthInput: UpdateAuthInput!): Auth!
   updateBudget(updateBudgetInput: UpdateBudgetInput!): Budget!
@@ -150,12 +150,14 @@ type Mutation {
 
 type Query {
   auth(id: Int!): Auth!
-  budget(id: Int!): Budget!
-  expense(id: Int!): Expense!
+  budget(id: String!): Budget!
+  budgets: [Budget!]!
+  expense(id: String!): Expense!
   expenses: [Expense!]!
   frequencies: [Frequency!]!
-  frequency(_id: String!): Frequency!
-  income(id: Int!): Income!
+  frequency(id: String!): Frequency!
+  income(id: String!): Income!
+  incomes: [Income!]!
   user(id: Int!): User!
 }
 
@@ -168,27 +170,26 @@ input UpdateAuthInput {
 input UpdateBudgetInput {
   """Example field (placeholder)"""
   exampleField: Int
-  id: Int!
+  id: String!
 }
 
 input UpdateExpenseInput {
   """Example field (placeholder)"""
   exampleField: Int
-  id: Int!
+  id: String!
 }
 
 input UpdateFrequencyInput {
-  _id: String!
-
   """Frequency description"""
   description: String
+  id: String!
   name: String
 }
 
 input UpdateIncomeInput {
   """Example field (placeholder)"""
   exampleField: Int
-  id: Int!
+  id: String!
 }
 
 input UpdateUserInput {

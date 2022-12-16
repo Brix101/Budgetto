@@ -1,8 +1,8 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { BudgetService } from './budget.service';
-import { Budget } from './entities/budget.entity';
 import { CreateBudgetInput } from './dto/create-budget.input';
 import { UpdateBudgetInput } from './dto/update-budget.input';
+import { Budget } from './entities/budget.entity';
 
 @Resolver(() => Budget)
 export class BudgetResolver {
@@ -13,13 +13,13 @@ export class BudgetResolver {
     return this.budgetService.create(createBudgetInput);
   }
 
-  @Query(() => [Budget], { name: 'budget' })
+  @Query(() => [Budget], { name: 'budgets' })
   findAll() {
     return this.budgetService.findAll();
   }
 
   @Query(() => Budget, { name: 'budget' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  findOne(@Args('id', { type: () => String }) id: string) {
     return this.budgetService.findOne(id);
   }
 
@@ -29,7 +29,7 @@ export class BudgetResolver {
   }
 
   @Mutation(() => Budget)
-  removeBudget(@Args('id', { type: () => Int }) id: number) {
+  removeBudget(@Args('id', { type: () => String }) id: string) {
     return this.budgetService.remove(id);
   }
 }

@@ -19,17 +19,17 @@ export class FrequencyResolver {
   }
 
   @Query(() => Frequency, { name: 'frequency' })
-  findOne(@Args('_id', { type: () => String }) _id: string) {
-    return this.frequencyService.findOne(_id);
+  findOne(@Args('id', { type: () => String }) id: string) {
+    return this.frequencyService.findOne(id);
   }
 
   @Mutation(() => Frequency)
   updateFrequency(@Args('updateFrequencyInput') updateFrequencyInput: UpdateFrequencyInput) {
-    return this.frequencyService.update(updateFrequencyInput._id, updateFrequencyInput);
+    return this.frequencyService.update(updateFrequencyInput.id, updateFrequencyInput);
   }
 
   @Mutation(() => Frequency)
-  removeFrequency(@Args('_id', { type: () => String }) _id: string) {
-    return this.frequencyService.remove(_id);
+  removeFrequency(@Args('id', { type: () => String }) id: string) {
+    return this.frequencyService.remove(id);
   }
 }
