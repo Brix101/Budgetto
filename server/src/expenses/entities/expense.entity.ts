@@ -32,9 +32,9 @@ export class Expense {
   @Field(()=>Category,{defaultValue:Category.NON_ESSENTIAL, description:"Expense category"})
   category!: Category;
 
-  @Prop({type:[{type: MongooseSchema.Types.ObjectId, ref:"Frequency"}]})  
-  @Field(() => [Frequency]) 
-  frequency?: Frequency[];
+  @Prop({type:MongooseSchema.Types.ObjectId, ref:"Frequency"})  
+  @Field(() => Frequency) 
+  frequency?: Frequency;
 
   @Prop()
   @Field(()=>String, { nullable:true, description:"Expense note" })

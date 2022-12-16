@@ -1,9 +1,10 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Schema as MongooseSchema } from 'mongoose';
+import { Frequency } from 'src/frequency/entities/frequency.entity';
 
 
-export type CatDocument = HydratedDocument<Budget>;
+export type BudgetDocument = HydratedDocument<Budget>;
 
 @Schema({timestamps:true})
 @ObjectType()
@@ -22,6 +23,10 @@ export class Budget {
   @Prop()
   @Field(()=>String, { nullable:true, description:"Budget note" })
   note?: string;
+
+  @Prop({type:MongooseSchema.Types.ObjectId, ref:"Frequency"})  
+  @Field(() => Frequency) 
+  frequency?: Frequency;
 
   @Prop()
   @Field(() => Date, { description: 'Created At' })

@@ -20,9 +20,9 @@ export class Income {
   @Field(()=> Number, { defaultValue:0, description:"Amount by centavo" })
   amount: number;
   
-  @Prop({type:[{type: MongooseSchema.Types.ObjectId, ref:"Frequency"}]})  
-  @Field(() => [Frequency]) 
-  frequency?: Frequency[];
+  @Prop({type:MongooseSchema.Types.ObjectId, ref:"Frequency"})  
+  @Field(() => Frequency) 
+  frequency?: Frequency;
 
   @Prop()
   @Field(()=>String, { nullable:true, description:"Income note" })

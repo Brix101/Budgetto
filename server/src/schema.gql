@@ -15,6 +15,7 @@ type Budget {
 
   """Created At"""
   createdAt: DateTime!
+  frequency: Frequency!
 
   """Budget name"""
   name: String!
@@ -78,7 +79,7 @@ type Expense {
 
   """Created At"""
   createdAt: DateTime!
-  frequency: [Frequency!]!
+  frequency: Frequency!
 
   """Expense name"""
   name: String!
@@ -114,7 +115,7 @@ type Income {
 
   """Created At"""
   createdAt: DateTime!
-  frequency: [Frequency!]!
+  frequency: Frequency!
 
   """Income name"""
   name: String!
