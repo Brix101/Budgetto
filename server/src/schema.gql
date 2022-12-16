@@ -162,6 +162,7 @@ type Query {
   income(id: String!): Income!
   incomes: [Income!]!
   user(id: Int!): User!
+  users: [User!]!
 }
 
 input UpdateAuthInput {
