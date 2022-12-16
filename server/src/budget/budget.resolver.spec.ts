@@ -1,16 +1,16 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { BudgetResolver } from './budget.resolver';
-import { BudgetService } from './budget.service';
+import { BudgetsResolver } from './budget.resolver';
+import { BudgetsService } from './budget.service';
 
 describe('BudgetResolver', () => {
-  let resolver: BudgetResolver;
+  let resolver: BudgetsResolver;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [BudgetResolver, BudgetService],
+      providers: [BudgetsResolver, BudgetsService],
     }).compile();
 
-    resolver = module.get<BudgetResolver>(BudgetResolver);
+    resolver = module.get<BudgetsResolver>(BudgetsResolver);
   });
 
   it('should be defined', () => {

@@ -6,11 +6,11 @@ import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
-import { BudgetModule } from './budget/budget.module';
+import { BudgetsModule } from './budget/budget.module';
 import { ExpensesModule } from './expenses/expenses.module';
-import { FrequencyModule } from './frequency/frequency.module';
-import { IncomeModule } from './income/income.module';
-import { UserModule } from './user/user.module';
+import { FrequenciesModule } from './frequency/frequency.module';
+import { IncomesModule } from './income/income.module';
+import { UsersModule } from './users/user.module';
 
 @Module({
   imports: [
@@ -21,11 +21,12 @@ import { UserModule } from './user/user.module';
     }),
     MongooseModule.forRoot('mongodb://localhost/nest'),
     ExpensesModule,
-    BudgetModule,
-    UserModule,
+    BudgetsModule,
+    UsersModule,
+    IncomesModule,
+    FrequenciesModule,
     AuthModule,
-    IncomeModule,
-    FrequencyModule,],
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

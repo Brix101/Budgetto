@@ -2,14 +2,16 @@ import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { CreateIncomeInput } from './dto/create-income.input';
 import { UpdateIncomeInput } from './dto/update-income.input';
 import { Income } from './entities/income.entity';
-import { IncomeService } from './income.service';
+import { IncomesService } from './income.service';
 
 @Resolver(() => Income)
-export class IncomeResolver {
-  constructor(private readonly incomeService: IncomeService) {}
+export class IncomesResolver {
+  constructor(private readonly incomeService: IncomesService) {}
 
   @Mutation(() => Income)
-  createIncome(@Args('createIncomeInput') createIncomeInput: CreateIncomeInput) {
+  createIncome(
+    @Args('createIncomeInput') createIncomeInput: CreateIncomeInput,
+  ) {
     return this.incomeService.create(createIncomeInput);
   }
 
@@ -24,7 +26,9 @@ export class IncomeResolver {
   }
 
   @Mutation(() => Income)
-  updateIncome(@Args('updateIncomeInput') updateIncomeInput: UpdateIncomeInput) {
+  updateIncome(
+    @Args('updateIncomeInput') updateIncomeInput: UpdateIncomeInput,
+  ) {
     return this.incomeService.update(updateIncomeInput.id, updateIncomeInput);
   }
 

@@ -1,15 +1,17 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { BudgetService } from './budget.service';
+import { BudgetsService } from './budget.service';
 import { CreateBudgetInput } from './dto/create-budget.input';
 import { UpdateBudgetInput } from './dto/update-budget.input';
 import { Budget } from './entities/budget.entity';
 
 @Resolver(() => Budget)
-export class BudgetResolver {
-  constructor(private readonly budgetService: BudgetService) {}
+export class BudgetsResolver {
+  constructor(private readonly budgetService: BudgetsService) {}
 
   @Mutation(() => Budget)
-  createBudget(@Args('createBudgetInput') createBudgetInput: CreateBudgetInput) {
+  createBudget(
+    @Args('createBudgetInput') createBudgetInput: CreateBudgetInput,
+  ) {
     return this.budgetService.create(createBudgetInput);
   }
 
@@ -24,7 +26,9 @@ export class BudgetResolver {
   }
 
   @Mutation(() => Budget)
-  updateBudget(@Args('updateBudgetInput') updateBudgetInput: UpdateBudgetInput) {
+  updateBudget(
+    @Args('updateBudgetInput') updateBudgetInput: UpdateBudgetInput,
+  ) {
     return this.budgetService.update(updateBudgetInput.id, updateBudgetInput);
   }
 

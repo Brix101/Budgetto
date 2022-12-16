@@ -2,11 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Auth {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
 type Budget {
   _id: String!
 
@@ -30,11 +25,6 @@ type Budget {
 enum Category {
   ESSENTIAL
   NON_ESSENTIAL
-}
-
-input CreateAuthInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
 }
 
 input CreateBudgetInput {
@@ -131,19 +121,16 @@ type Income {
 }
 
 type Mutation {
-  createAuth(createAuthInput: CreateAuthInput!): Auth!
   createBudget(createBudgetInput: CreateBudgetInput!): Budget!
   createExpense(createExpenseInput: CreateExpenseInput!): Expense!
   createFrequency(createFrequencyInput: CreateFrequencyInput!): Frequency!
   createIncome(createIncomeInput: CreateIncomeInput!): Income!
   createUser(createUserInput: CreateUserInput!): User!
-  removeAuth(id: Int!): Auth!
   removeBudget(id: String!): Budget!
   removeExpense(id: String!): Expense!
   removeFrequency(id: String!): Frequency!
   removeIncome(id: String!): Income!
-  removeUser(id: Int!): User!
-  updateAuth(updateAuthInput: UpdateAuthInput!): Auth!
+  removeUser(id: String!): User!
   updateBudget(updateBudgetInput: UpdateBudgetInput!): Budget!
   updateExpense(updateExpenseInput: UpdateExpenseInput!): Expense!
   updateFrequency(updateFrequencyInput: UpdateFrequencyInput!): Frequency!
@@ -152,7 +139,6 @@ type Mutation {
 }
 
 type Query {
-  auth(id: Int!): Auth!
   budget(id: String!): Budget!
   budgets: [Budget!]!
   expense(id: String!): Expense!
@@ -161,14 +147,8 @@ type Query {
   frequency(id: String!): Frequency!
   income(id: String!): Income!
   incomes: [Income!]!
-  user(id: Int!): User!
+  user(id: String!): User!
   users: [User!]!
-}
-
-input UpdateAuthInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
 }
 
 input UpdateBudgetInput {
@@ -198,7 +178,7 @@ input UpdateIncomeInput {
 
 input UpdateUserInput {
   email: String
-  id: Int!
+  id: String!
 
   """Example field (placeholder)"""
   name: String

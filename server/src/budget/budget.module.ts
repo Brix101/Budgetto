@@ -1,11 +1,13 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule } from "@nestjs/mongoose";
-import { BudgetResolver } from './budget.resolver';
-import { BudgetService } from './budget.service';
+import { MongooseModule } from '@nestjs/mongoose';
+import { BudgetsResolver } from './budget.resolver';
+import { BudgetsService } from './budget.service';
 import { Budget, BudgetSchema } from './entities/budget.entity';
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: Budget.name, schema: BudgetSchema }])],
-  providers: [BudgetResolver, BudgetService]
+  imports: [
+    MongooseModule.forFeature([{ name: Budget.name, schema: BudgetSchema }]),
+  ],
+  providers: [BudgetsResolver, BudgetsService],
 })
-export class BudgetModule {}
+export class BudgetsModule {}

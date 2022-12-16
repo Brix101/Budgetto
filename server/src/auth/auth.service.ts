@@ -1,26 +1,18 @@
 import { Injectable } from '@nestjs/common';
-import { CreateAuthInput } from './dto/create-auth.input';
-import { UpdateAuthInput } from './dto/update-auth.input';
+import { UsersService } from 'src/users/user.service';
+import { LoginUserInput } from './dto/login-user.input';
 
 @Injectable()
 export class AuthService {
-  create(createAuthInput: CreateAuthInput) {
-    return 'This action adds a new auth';
-  }
+  constructor(private userSerive: UsersService) {}
 
-  findAll() {
-    return `This action returns all auth`;
-  }
+  async validateUser({ email, password }: LoginUserInput) {
+    const user = await this.userSerive.findOne(email);
 
-  findOne(id: number) {
-    return `This action returns a #${id} auth`;
-  }
+    if (!user || !user.comparePassword(password)) {
+      return null;
+    }
 
-  update(id: number, updateAuthInput: UpdateAuthInput) {
-    return `This action updates a #${id} auth`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} auth`;
+    return user;
   }
 }

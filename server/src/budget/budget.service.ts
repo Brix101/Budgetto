@@ -3,7 +3,7 @@ import { CreateBudgetInput } from './dto/create-budget.input';
 import { UpdateBudgetInput } from './dto/update-budget.input';
 
 @Injectable()
-export class BudgetService {
+export class BudgetsService {
   create(createBudgetInput: CreateBudgetInput) {
     return 'This action adds a new budget';
   }

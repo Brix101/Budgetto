@@ -2,14 +2,16 @@ import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { CreateFrequencyInput } from './dto/create-frequency.input';
 import { UpdateFrequencyInput } from './dto/update-frequency.input';
 import { Frequency } from './entities/frequency.entity';
-import { FrequencyService } from './frequency.service';
+import { FrequenciesService } from './frequency.service';
 
 @Resolver(() => Frequency)
-export class FrequencyResolver {
-  constructor(private readonly frequencyService: FrequencyService) {}
+export class FrequenciesResolver {
+  constructor(private readonly frequencyService: FrequenciesService) {}
 
   @Mutation(() => Frequency)
-  createFrequency(@Args('createFrequencyInput') createFrequencyInput: CreateFrequencyInput) {
+  createFrequency(
+    @Args('createFrequencyInput') createFrequencyInput: CreateFrequencyInput,
+  ) {
     return this.frequencyService.create(createFrequencyInput);
   }
 
@@ -24,8 +26,13 @@ export class FrequencyResolver {
   }
 
   @Mutation(() => Frequency)
-  updateFrequency(@Args('updateFrequencyInput') updateFrequencyInput: UpdateFrequencyInput) {
-    return this.frequencyService.update(updateFrequencyInput.id, updateFrequencyInput);
+  updateFrequency(
+    @Args('updateFrequencyInput') updateFrequencyInput: UpdateFrequencyInput,
+  ) {
+    return this.frequencyService.update(
+      updateFrequencyInput.id,
+      updateFrequencyInput,
+    );
   }
 
   @Mutation(() => Frequency)

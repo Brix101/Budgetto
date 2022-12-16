@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { IncomeService } from './income.service';
-import { IncomeResolver } from './income.resolver';
+import { IncomesResolver } from './income.resolver';
+import { IncomesService } from './income.service';
 
 @Module({
-  providers: [IncomeResolver, IncomeService]
+  providers: [IncomesResolver, IncomesService],
 })
-export class IncomeModule {}
+export class IncomesModule {}

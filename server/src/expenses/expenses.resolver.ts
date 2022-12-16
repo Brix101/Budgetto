@@ -9,7 +9,9 @@ export class ExpensesResolver {
   constructor(private readonly expensesService: ExpensesService) {}
 
   @Mutation(() => Expense)
-  createExpense(@Args('createExpenseInput') createExpenseInput: CreateExpenseInput) {
+  createExpense(
+    @Args('createExpenseInput') createExpenseInput: CreateExpenseInput,
+  ) {
     return this.expensesService.create(createExpenseInput);
   }
 
@@ -24,8 +26,13 @@ export class ExpensesResolver {
   }
 
   @Mutation(() => Expense)
-  updateExpense(@Args('updateExpenseInput') updateExpenseInput: UpdateExpenseInput) {
-    return this.expensesService.update(updateExpenseInput.id, updateExpenseInput);
+  updateExpense(
+    @Args('updateExpenseInput') updateExpenseInput: UpdateExpenseInput,
+  ) {
+    return this.expensesService.update(
+      updateExpenseInput.id,
+      updateExpenseInput,
+    );
   }
 
   @Mutation(() => Expense)
