@@ -36,7 +36,7 @@ export class User {
   updatedAt?: Date
 
   
-  comparePassword: (candidatePassword: string) => boolean;
+  comparePassword: (candidatePassword: string) => Promise<boolean>;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
@@ -64,5 +64,5 @@ UserSchema.methods.comparePassword = async function (
 ) {
   const user = this as UserDocument;
 
-  return bcrypt.compare(candidatePassword, user.password).catch((e) => false);
+  return await bcrypt.compare(candidatePassword, user.password).catch((e) => false);
 };

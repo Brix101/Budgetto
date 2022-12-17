@@ -8,22 +8,14 @@ export class AuthService {
   constructor(private userSerive: UsersService,
     private jwtService: JwtService) {}
 
-  async validateUser(email: string, password: string): Promise<User | null> {
+  async validateUser(email: string): Promise<User | null> {
     const user = await this.userSerive.findByEmail({email : email});
-    if (user && user.comparePassword(password)) {
-      return user;
-    }
-
-    return null;
+    return user;
   }
 
   async login(user:User) {
-    if (user) {
-      return {
-        accessToken: this.jwtService.sign({sub:user._id, email:user.email})
-      };
-    }
-
-    return  { accessToken:null,};
+    return {
+      accessToken: this.jwtService.sign({sub:user._id, email:user.email})
+    };
   }
 }
