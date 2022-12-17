@@ -17,16 +17,13 @@ export class UsersService {
     return this.userModel.find().exec();
   }
 
-  async findOne(email: string): Promise<User> {
-    return await this.userModel.findOne({ email });
+  async findOne(id: string): Promise<User> {
+    return await this.userModel.findById(id);
   }
 
-  async findIfUserExists(email: string): Promise<boolean> {
-    const user = await this.userModel.findOne({ email });
-    if (user) {
-      return false;
-    }
-    return true;
+  async findByEmail({email}:{email: string}): Promise<any> {
+    const user = await this.userModel.findOne({ email });   
+    return user;
   }
 
   update(id: string, updateUserInput: UpdateUserInput) {

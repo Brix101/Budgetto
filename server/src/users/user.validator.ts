@@ -3,7 +3,7 @@ import {
   registerDecorator,
   ValidationOptions,
   ValidatorConstraint,
-  ValidatorConstraintInterface,
+  ValidatorConstraintInterface
 } from 'class-validator';
 import { UsersService } from './user.service';
 
@@ -15,7 +15,7 @@ export class IsEmailUserAlreadyExistConstraint
   constructor(protected readonly usersService: UsersService) {}
 
   async validate(email: string) {
-    return this.usersService.findIfUserExists(email);
+    return !(this.usersService.findByEmail({email:email}));
   }
 }
 

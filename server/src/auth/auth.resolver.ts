@@ -9,12 +9,12 @@ import { GqlAuthGuard } from './gql-auth.guard';
 export class AuthResolver {
   constructor(private authSerive: AuthService) {}
 
-  @Mutation(() => LoginResponse)
   @UseGuards(GqlAuthGuard)
+  @Mutation(() => LoginResponse)
   login(
     @Args('loginUserInput') loginUserInput: LoginUserInput,
-    @Context() context,
+    @Context() context
   ) {
-    return this.authSerive.login(context.user);
+    return this.authSerive.login(context.req.user);
   }
 }
