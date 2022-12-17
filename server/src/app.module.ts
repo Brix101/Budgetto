@@ -27,9 +27,9 @@ const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: async (config: ConfigService) => ({
-        uri: config.get<string>('DATABASE_HOST'),
-        dbName: config.get<string>('DATABASE_NAME'),
+      useFactory: async (configService: ConfigService) => ({
+        uri: configService.get<string>('DATABASE_HOST'),
+        dbName: configService.get<string>('DATABASE_NAME'),
       }),
     }),
     ExpensesModule,
