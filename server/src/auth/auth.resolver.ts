@@ -13,7 +13,7 @@ export class AuthResolver {
   @Mutation(() => LoginResponse)
   login(
     @Args('loginUserInput') loginUserInput: LoginUserInput,
-    @Context() context
+    @Context() context: any,
   ) {
     return this.authSerive.login(context.req.user);
   }

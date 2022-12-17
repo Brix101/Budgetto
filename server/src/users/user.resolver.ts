@@ -17,13 +17,13 @@ export class UsersResolver {
 
   @Query(() => [User], { name: 'users' })
   @UseGuards(JwtAuthGuard)
-  findAll(@Context() context) {
+  findAll() {
     return this.userService.findAll();
   }
 
   @Query(() => User, { name: 'user' })
   @UseGuards(JwtAuthGuard)
-  findOne(@Context() context) {
+  findOne(@Context() context: any) {
     return this.userService.findOne(context.req.user.userId);
   }
 
