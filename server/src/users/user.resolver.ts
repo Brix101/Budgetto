@@ -24,7 +24,7 @@ export class UsersResolver {
   @Query(() => User, { name: 'user' })
   @UseGuards(JwtAuthGuard)
   findOne(@Context() context: any) {
-    return this.userService.findOne(context.req.user.userId);
+    return this.userService.findOne(context.req.user.id);
   }
 
   @Mutation(() => User)

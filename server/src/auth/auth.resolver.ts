@@ -15,6 +15,6 @@ export class AuthResolver {
     @Args('loginUserInput') loginUserInput: LoginUserInput,
     @Context() context: any,
   ) {
-    return this.authSerive.login(context.req.user);
+    return this.authSerive.generateToken(context.req.user);
   }
 }
