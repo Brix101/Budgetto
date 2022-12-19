@@ -10,7 +10,6 @@ type Budget {
 
   """Created At"""
   createdAt: DateTime!
-  frequency: Frequency!
 
   """Budget name"""
   name: String!
@@ -32,20 +31,24 @@ input CreateBudgetInput {
   exampleField: Int!
 }
 
-input CreateExpenseInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
+input CreateLedgerInput {
+  """Amount by centavo"""
+  amount: Float! = 0
 
-input CreateFrequencyInput {
-  """Frequency description"""
-  description: String
+  """Ledger category"""
+  category: Category!
+
+  """Ledger Type"""
+  ledgerType: LedgerType
+
+  """Ledger name"""
   name: String!
-}
 
-input CreateIncomeInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  """Ledger note"""
+  note: String
+
+  """Periodical Type"""
+  periodical: Periodical
 }
 
 input CreateUserInput {
@@ -61,63 +64,34 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
-type Expense {
+type Ledger {
   _id: String!
 
-  """Amount by centavo"""
+  """Amount by centavo's"""
   amount: Float!
 
-  """Expense category"""
+  """Ledger category"""
   category: Category!
 
   """Created At"""
   createdAt: DateTime!
-  frequency: Frequency!
 
-  """Expense name"""
+  """Ledger Type"""
+  ledgerType: LedgerType
+
+  """Ledger name"""
   name: String!
 
-  """Expense note"""
-  note: String
+  """Periodical Type"""
+  periodical: Periodical
 
   """Updated At"""
   updatedAt: DateTime!
 }
 
-type Frequency {
-  _id: String!
-
-  """Created At"""
-  createdAt: DateTime!
-
-  """Frequency description"""
-  description: String
-
-  """Frequency name"""
-  name: String!
-
-  """Updated At"""
-  updatedAt: DateTime!
-}
-
-type Income {
-  _id: String!
-
-  """Amount by centavo"""
-  amount: Float!
-
-  """Created At"""
-  createdAt: DateTime!
-  frequency: Frequency!
-
-  """Income name"""
-  name: String!
-
-  """Income note"""
-  note: String
-
-  """Updated At"""
-  updatedAt: DateTime!
+enum LedgerType {
+  EXPENSE
+  INCOME
 }
 
 type LoginResponse {
@@ -131,32 +105,30 @@ input LoginUserInput {
 
 type Mutation {
   createBudget(createBudgetInput: CreateBudgetInput!): Budget!
-  createExpense(createExpenseInput: CreateExpenseInput!): Expense!
-  createFrequency(createFrequencyInput: CreateFrequencyInput!): Frequency!
-  createIncome(createIncomeInput: CreateIncomeInput!): Income!
+  createLedger(createLedgerInput: CreateLedgerInput!): Ledger!
   createUser(createUserInput: CreateUserInput!): User!
   login(loginUserInput: LoginUserInput!): LoginResponse!
   removeBudget(id: String!): Budget!
-  removeExpense(id: String!): Expense!
-  removeFrequency(id: String!): Frequency!
-  removeIncome(id: String!): Income!
+  removeLedger(id: String!): Ledger!
   removeUser(id: String!): User!
   updateBudget(updateBudgetInput: UpdateBudgetInput!): Budget!
-  updateExpense(updateExpenseInput: UpdateExpenseInput!): Expense!
-  updateFrequency(updateFrequencyInput: UpdateFrequencyInput!): Frequency!
-  updateIncome(updateIncomeInput: UpdateIncomeInput!): Income!
+  updateLedger(updateLedgerInput: UpdateLedgerInput!): Ledger!
   updateUser(updateUserInput: UpdateUserInput!): User!
+}
+
+enum Periodical {
+  ANNUAL
+  DAILY
+  MONTHLY
+  QUARTERLY
+  WEEKLY
 }
 
 type Query {
   budget(id: String!): Budget!
   budgets: [Budget!]!
-  expense(id: String!): Expense!
-  expenses: [Expense!]!
-  frequencies: [Frequency!]!
-  frequency(id: String!): Frequency!
-  income(id: String!): Income!
-  incomes: [Income!]!
+  ledger(id: String!): Ledger!
+  ledgers: [Ledger!]!
   user: User!
   users: [User!]!
 }
@@ -167,23 +139,25 @@ input UpdateBudgetInput {
   id: String!
 }
 
-input UpdateExpenseInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: String!
-}
+input UpdateLedgerInput {
+  """Amount by centavo"""
+  amount: Float = 0
 
-input UpdateFrequencyInput {
-  """Frequency description"""
-  description: String
+  """Ledger category"""
+  category: Category
   id: String!
+
+  """Ledger Type"""
+  ledgerType: LedgerType
+
+  """Ledger name"""
   name: String
-}
 
-input UpdateIncomeInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: String!
+  """Ledger note"""
+  note: String
+
+  """Periodical Type"""
+  periodical: Periodical
 }
 
 input UpdateUserInput {

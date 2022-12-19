@@ -2,16 +2,14 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
-import { MongooseModule, MongooseModuleFactoryOptions } from '@nestjs/mongoose';
+import { MongooseModule } from '@nestjs/mongoose';
 import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { BudgetsModule } from './budget/budget.module';
 import { getEnvPath } from './common/helpers/env.helper';
-import { ExpensesModule } from './expenses/expenses.module';
-import { FrequenciesModule } from './frequency/frequency.module';
-import { IncomesModule } from './income/income.module';
+import { LedgerModule } from './ledger/ledger.module';
 import { UsersModule } from './users/user.module';
 
 const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
@@ -32,12 +30,10 @@ const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
         dbName: configService.get<string>('DATABASE_NAME'),
       }),
     }),
-    ExpensesModule,
     BudgetsModule,
     UsersModule,
-    IncomesModule,
-    FrequenciesModule,
     AuthModule,
+    LedgerModule,
   ],
   controllers: [AppController],
   providers: [AppService],
