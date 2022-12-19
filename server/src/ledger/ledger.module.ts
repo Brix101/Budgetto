@@ -10,6 +10,7 @@ import { LedgerService } from './ledger.service';
       { name: Ledger.name, schema: LedgerSchema },
     ]),
   ],
-  providers: [LedgerResolver, LedgerService]
+  providers: [LedgerResolver, LedgerService],
+  exports:[LedgerService]
 })
 export class LedgerModule {}

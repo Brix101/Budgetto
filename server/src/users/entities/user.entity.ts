@@ -2,6 +2,7 @@ import { Field, ObjectType } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as bcrypt from 'bcrypt';
 import { HydratedDocument, Schema as MongooseSchema } from 'mongoose';
+import { Ledger } from 'src/ledger/entities/ledger.entity';
 
 
 export type UserDocument = HydratedDocument<User>;
@@ -23,10 +24,10 @@ export class User {
   @Prop({ required: true })
   password: string;
 
+  @Prop({ type: [{ type: MongooseSchema.Types.ObjectId, ref: 'Ledger' }] })
+  @Field(()=>[Ledger], { description: 'ledgers' })
+  ledgers: Ledger[];
   
-  @Prop({ required: true, default: false })
-  active: boolean;
-
   @Prop()
   @Field(() => Date, { description: 'Created At' })
   createdAt?: Date

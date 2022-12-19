@@ -130,7 +130,6 @@ type Query {
   ledger(id: String!): Ledger!
   ledgers: [Ledger!]!
   user: User!
-  users: [User!]!
 }
 
 input UpdateBudgetInput {
@@ -175,6 +174,9 @@ type User {
   """Created At"""
   createdAt: DateTime!
   email: String!
+
+  """ledgers"""
+  ledgers: [Ledger!]!
   name: String!
 
   """Updated At"""

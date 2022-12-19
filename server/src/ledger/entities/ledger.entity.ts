@@ -1,6 +1,7 @@
 import { Field, ObjectType, registerEnumType } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Schema as MongooseSchema } from 'mongoose';
+import { User } from 'src/users/entities/user.entity';
 
 export type LedgerDocument = HydratedDocument<Ledger>;
 
@@ -35,7 +36,6 @@ registerEnumType(Periodical, {
 });
 
 
-
 @Schema({timestamps:true})
 @ObjectType()
 export class Ledger {
@@ -61,6 +61,9 @@ export class Ledger {
   @Prop()
   @Field(()=>Periodical,{nullable:true, description:"Periodical Type"})
   periodical?: Periodical;
+
+  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'User' })
+  user: User;
 
   @Prop()
   @Field(() => Date, { description: 'Created At' })

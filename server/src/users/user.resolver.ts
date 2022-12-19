@@ -1,6 +1,7 @@
 import { UseGuards } from '@nestjs/common';
-import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Context, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { Ledger } from 'src/ledger/entities/ledger.entity';
 import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
 import { User } from './entities/user.entity';
@@ -15,16 +16,16 @@ export class UsersResolver {
     return this.userService.create(createUserInput);
   }
 
-  @Query(() => [User], { name: 'users' })
-  @UseGuards(JwtAuthGuard)
-  findAll() {
-    return this.userService.findAll();
-  }
-
   @Query(() => User, { name: 'user' })
   @UseGuards(JwtAuthGuard)
   findOne(@Context() context: any) {
     return this.userService.findOne(context.req.user.id);
+  }
+
+// get all ledgers under user
+  @ResolveField(()=>[Ledger])
+  ledgers(@Parent() user:User):Promise<Ledger[]>{
+    return this.userService.getUserLedger(user)
   }
 
   @Mutation(() => User)
