@@ -1,5 +1,5 @@
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -9,6 +9,7 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { BudgetsModule } from './budget/budget.module';
 import { getEnvPath } from './common/helpers/env.helper';
+import { DeserializeUserMiddleware } from './common/middleware/deserializeUser.middleware';
 import { LedgerModule } from './ledger/ledger.module';
 import { UsersModule } from './users/user.module';
 
@@ -21,6 +22,16 @@ const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       sortSchema: true,
+      cors: {
+        origin:["http://190.160.15.187:8000"],
+        credentials: true,
+      },
+      playground:{
+        settings:{
+          "request.credentials": "include", // Otherwise cookies won't be sent
+        }
+      },
+      context: ({ req, res }) => ({ req, res }),      
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
@@ -38,4 +49,8 @@ const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  public configure(consumer: MiddlewareConsumer): void {
+    consumer.apply(DeserializeUserMiddleware).forRoutes('*');
+  }
+}

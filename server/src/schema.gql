@@ -94,10 +94,6 @@ enum LedgerType {
   INCOME
 }
 
-type LoginResponse {
-  accessToken: String
-}
-
 input LoginUserInput {
   email: String!
   password: String!
@@ -107,7 +103,7 @@ type Mutation {
   createBudget(createBudgetInput: CreateBudgetInput!): Budget!
   createLedger(createLedgerInput: CreateLedgerInput!): Ledger!
   createUser(createUserInput: CreateUserInput!): User!
-  login(loginUserInput: LoginUserInput!): LoginResponse!
+  login(loginUserInput: LoginUserInput!): User!
   removeBudget(id: String!): Budget!
   removeLedger(id: String!): Ledger!
   removeUser(id: String!): User!
