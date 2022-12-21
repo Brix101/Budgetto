@@ -55,7 +55,7 @@ input CreateUserInput {
   email: String!
 
   """Example field (placeholder)"""
-  name: String!
+  name: String
   password: String!
 }
 
