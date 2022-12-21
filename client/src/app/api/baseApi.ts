@@ -4,7 +4,6 @@ import { ClientError } from "graphql-request";
 
 import { RootState } from "../store";
 
-const baseUrl = process.env.REACT_APP_TECHNOTES_API_HTTP_GRAPHQL;
 const techNotesHttpAPI = "http://190.160.15.187:8000/graphql";
 
 const baseQuery = graphqlRequestBaseQuery<
@@ -26,15 +25,8 @@ const baseQuery = graphqlRequestBaseQuery<
 export const api = createApi({
   reducerPath: "api",
   baseQuery,
-  tagTypes: ["User", "Note"],
   endpoints: () => ({}),
 });
 
-// export const api = createApi({
-//   baseQuery: graphqlRequestBaseQuery({
-//     url: 'http://190.160.15.187:8000/graphql',
-//   }),
-//   endpoints: () => ({})
-// })
 
 

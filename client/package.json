@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.7.2",
-    "@graphql-codegen/cli": "^2.16.1",
     "@reduxjs/toolkit": "^1.9.1",
     "@rtk-query/graphql-request-base-query": "^2.2.0",
     "@testing-library/jest-dom": "^5.16.5",
@@ -49,6 +48,7 @@
     ]
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^2.16.1",
     "@graphql-codegen/typescript": "^2.8.5",
     "@graphql-codegen/typescript-operations": "^2.5.10",
     "@graphql-codegen/typescript-resolvers": "^2.7.10",
