@@ -16,6 +16,11 @@ export class UsersResolver {
     return this.userService.create(createUserInput);
   }
 
+  @Query(() => [User], { name: 'users' })
+  findAll(@Context() context: any) {
+    return this.userService.findAll();
+  }
+
   @Query(() => User, { name: 'user' })
   @UseGuards(JwtAuthGuard)
   findOne(@Context() context: any) {

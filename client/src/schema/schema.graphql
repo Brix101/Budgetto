@@ -1,23 +1,19 @@
-# ------------------------------------------------------
-# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
-# ------------------------------------------------------
-
 type Budget {
   _id: String!
 
-  """Amount by centavo"""
+  # Amount by centavo
   amount: Float!
 
-  """Created At"""
+  # Created At
   createdAt: DateTime!
 
-  """Budget name"""
+  # Budget name
   name: String!
 
-  """Budget note"""
+  # Budget note
   note: String
 
-  """Updated At"""
+  # Updated At
   updatedAt: DateTime!
 }
 
@@ -27,65 +23,63 @@ enum Category {
 }
 
 input CreateBudgetInput {
-  """Example field (placeholder)"""
+  # Example field (placeholder)
   exampleField: Int!
 }
 
 input CreateLedgerInput {
-  """Amount by centavo"""
+  # Amount by centavo
   amount: Float! = 0
 
-  """Ledger category"""
+  # Ledger category
   category: Category!
 
-  """Ledger Type"""
+  # Ledger Type
   ledgerType: LedgerType
 
-  """Ledger name"""
+  # Ledger name
   name: String!
 
-  """Ledger note"""
+  # Ledger note
   note: String
 
-  """Periodical Type"""
+  # Periodical Type
   periodical: Periodical
 }
 
 input CreateUserInput {
   email: String!
 
-  """Example field (placeholder)"""
+  # Example field (placeholder)
   name: String
   password: String!
 }
 
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
+# A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 scalar DateTime
 
 type Ledger {
   _id: String!
 
-  """Amount by centavo's"""
+  # Amount by centavo's
   amount: Float!
 
-  """Ledger category"""
+  # Ledger category
   category: Category!
 
-  """Created At"""
+  # Created At
   createdAt: DateTime!
 
-  """Ledger Type"""
+  # Ledger Type
   ledgerType: LedgerType
 
-  """Ledger name"""
+  # Ledger name
   name: String!
 
-  """Periodical Type"""
+  # Periodical Type
   periodical: Periodical
 
-  """Updated At"""
+  # Updated At
   updatedAt: DateTime!
 }
 
@@ -134,29 +128,29 @@ type Query {
 }
 
 input UpdateBudgetInput {
-  """Example field (placeholder)"""
+  # Example field (placeholder)
   exampleField: Int
   id: String!
 }
 
 input UpdateLedgerInput {
-  """Amount by centavo"""
+  # Amount by centavo
   amount: Float = 0
 
-  """Ledger category"""
+  # Ledger category
   category: Category
   id: String!
 
-  """Ledger Type"""
+  # Ledger Type
   ledgerType: LedgerType
 
-  """Ledger name"""
+  # Ledger name
   name: String
 
-  """Ledger note"""
+  # Ledger note
   note: String
 
-  """Periodical Type"""
+  # Periodical Type
   periodical: Periodical
 }
 
@@ -164,7 +158,7 @@ input UpdateUserInput {
   email: String
   id: String!
 
-  """Example field (placeholder)"""
+  # Example field (placeholder)
   name: String
   password: String
 }
@@ -172,14 +166,14 @@ input UpdateUserInput {
 type User {
   _id: String!
 
-  """Created At"""
+  # Created At
   createdAt: DateTime!
   email: String!
 
-  """ledgers"""
+  # ledgers
   ledgers: [Ledger!]!
   name: String!
 
-  """Updated At"""
+  # Updated At
   updatedAt: DateTime!
 }
