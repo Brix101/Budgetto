@@ -10,6 +10,6 @@ async function bootstrap() {
   app.use(cookieParser());
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
 
-  await app.listen(parseInt(process.env.PORT) || 8000);
+  await app.listen(process.env.PORT || 8000);
 }
 bootstrap();

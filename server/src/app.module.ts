@@ -8,16 +8,13 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { BudgetsModule } from './budget/budget.module';
-import { getEnvPath } from './common/helpers/env.helper';
 import { DeserializeUserMiddleware } from './common/middleware/deserializeUser.middleware';
 import { LedgerModule } from './ledger/ledger.module';
 import { UsersModule } from './users/user.module';
 
-const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
-
 @Module({
   imports: [
-    ConfigModule.forRoot({ envFilePath, isGlobal: true }),
+    ConfigModule.forRoot(),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
@@ -31,6 +28,7 @@ const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
           "request.credentials": "include", // Otherwise cookies won't be sent
         }
       },
+      introspection: true,
       context: ({ req, res }) => ({ req, res }),      
     }),
     MongooseModule.forRootAsync({

@@ -17,14 +17,14 @@ export class UsersResolver {
   }
 
   @Query(() => [User], { name: 'users' })
-  findAll(@Context() context: any) {
+  findAll() {
     return this.userService.findAll();
   }
 
   @Query(() => User, { name: 'user' })
   @UseGuards(JwtAuthGuard)
   findOne(@Context() context: any) {
-    return this.userService.findOne(context.req.user.id);
+    return this.userService.findOne(context.req.user.sub);
   }
 
 // get all ledgers under user
